@@ -3,6 +3,8 @@ COMP 163 - Project 2: Character Abilities Showcase
 Name: [Your Name Here]
 Date: [Date]
 
+Kori Jackson
+
 AI Usage: [Document any AI assistance used]
 Example: AI helped with inheritance structure and method overriding concepts
 """
