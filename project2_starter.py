@@ -142,8 +142,12 @@ class Player(Character):
         Should show everything the parent shows PLUS player-specific info.
         """
         # TODO: Call the parent's display_stats method using super()
+        super().display_stats()
         # TODO: Then print additional player info like class and level
-        pass
+        print(f"Class     : {self.character_class}")
+        print(f"Level     : {self.level}")
+        print(f"Experience: {self.experience}")
+
 
 class Warrior(Player):
     """
@@ -158,7 +162,7 @@ class Warrior(Player):
         """
         # TODO: Call super().__init__() with warrior-appropriate stats
         # Suggested stats: health=120, strength=15, magic=5
-        pass
+        super().__init__(name, "Warrior", health=120, strength=15, magic=5)
         
     def attack(self, target):
         """
@@ -168,7 +172,12 @@ class Warrior(Player):
         # TODO: Implement warrior attack
         # Should do more damage than basic attack
         # Maybe strength + 5 bonus damage?
-        pass
+        bonus_damage = 5
+        damage = self.strength + bonus_damage
+        target.health -= damage
+        print(f"{self.name} slashes {target.name} for {damage} damage!")
+        print(f"{target.name}'s health is now {target.health}.")
+
         
     def power_strike(self, target):
         """
@@ -176,7 +185,9 @@ class Warrior(Player):
         """
         # TODO: Implement power strike
         # Should do significantly more damage than regular attack
-        pass
+        damage = (self.strength * 2) + 10
+        target.health -= damage
+
 
 class Mage(Player):
     """
