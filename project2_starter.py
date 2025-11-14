@@ -202,7 +202,9 @@ class Mage(Player):
         """
         # TODO: Call super().__init__() with mage-appropriate stats
         # Suggested stats: health=80, strength=8, magic=20
-        pass
+        super().__init__(name, "Mage", health =80, strength=8, magic=20)
+
+
         
     def attack(self, target):
         """
@@ -211,7 +213,12 @@ class Mage(Player):
         """
         # TODO: Implement mage attack
         # Should use self.magic for damage calculation instead of strength
-        pass
+        bonus_damage = 3
+        damage = self.strength + bonus_damage
+        target.health -= damage
+
+        print(f"{self.name} casts a spell on {target.name}, dealing {damage} damage!")
+        print(f"{target.name}'s health is now {target.health}.")
         
     def fireball(self, target):
         """
@@ -219,7 +226,10 @@ class Mage(Player):
         """
         # TODO: Implement fireball spell
         # Should do magic-based damage with bonus
-        pass
+        damage = (self.magic *2) + 5
+        target.health -= damage
+        print(f"{self.name} casts FIREBALL on {target.name}, dealing {damage} damage!")
+        print(f"{target.name}'s health is now {target.health}.")
 
 class Rogue(Player):
     """
@@ -234,7 +244,7 @@ class Rogue(Player):
         """
         # TODO: Call super().__init__() with rogue-appropriate stats
         # Suggested stats: health=90, strength=12, magic=10
-        pass
+        super().__init__(name, "Rogue", health=90, strength=12, magic=10)
         
     def attack(self, target):
         """
@@ -242,17 +252,28 @@ class Rogue(Player):
         Rogues should have a chance for extra damage (critical hits).
         """
         # TODO: Implement rogue attack
-        # Could add a chance for critical hit (double damage)
-        # Hint: use random.randint(1, 10) and if result <= 3, it's a crit
-        pass
-        
+
+        damage = self.strength
+        crit_roll = random.randint(1, 10) #used chatgpt for guidance on this line
+        if crit_roll <= 3:
+            damage *= 2
+            print(f"CRITICAL HIT!")
+        target.health -= damage
+
+        print(f"{self.name} strikes {target.name} for {damage} damage!")
+        print(f"{target.name}'s health is now {target.health}.")
+
     def sneak_attack(self, target):
         """
         Special rogue ability - guaranteed critical hit.
         """
         # TODO: Implement sneak attack
         # Should always do critical damage
-        pass
+        damage = self.strength * 2
+        target.health -= damage
+
+        print(f"{self.name} performs a SNEAK ATTACK on {target.name}, dealing {damage} critical damage!")
+        print(f"{target.name}'s health is now {target.health}.")
 
 class Weapon:
     """
@@ -265,14 +286,17 @@ class Weapon:
         Create a weapon with a name and damage bonus.
         """
         # TODO: Store weapon name and damage bonus
-        pass
+        self.name = name
+        self.damage_bonus = damage_bonus
         
     def display_info(self):
         """
         Display information about this weapon.
         """
         # TODO: Print weapon name and damage bonus
-        pass
+        print(f"Weapon Name: {self.name}")
+        print(f"Damage Bonus: {self.damage_bonus}")
+
 
 # ============================================================================
 # MAIN PROGRAM FOR TESTING (YOU CAN MODIFY THIS FOR TESTING)
